@@ -1,7 +1,11 @@
 // snack 1 
+function getInitials(fullname) {
+    const [nome, cognome] = fullname.split(' ')
+    return `${nome.charAt(0).toLowerCase()} - ${cognome.charAt(0).toLowerCase()}`
+}
 
 test('La funzione getInitials restituisce le iniziali di un nome completo.', () => {
-
+    expect(getInitials('andrea langianese')).toBe('a - l')
 })
 // snack 2
 
