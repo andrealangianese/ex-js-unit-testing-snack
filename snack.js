@@ -3,8 +3,12 @@ function getInitials(fullname) {
     return `${nome.charAt(0).toLowerCase()} - ${cognome.charAt(0).toLowerCase()}`
 }
 
-const createSlug = frase => frase.trim().toLowerCase().replaceAll(' ', '-')
-
+const createSlug = frase => {
+    if (!frase) {
+        throw new Error('errore non puoi passare una stringa vuota')
+    }
+    return frase.trim().toLowerCase().replaceAll(' ', '-')
+}
 
 function average(numeri) {
     return numeri.reduce((acc, num) => acc + num, 0) / numeri.length

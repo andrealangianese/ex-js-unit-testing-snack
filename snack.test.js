@@ -29,7 +29,9 @@ test('La funzione isPalindrome verifica se una stringa è un palindromo."', () =
 // snack 6 
 
 test('La funzione createSlug lancia un errore se il titolo è vuoto o non valido.', () => {
-
+    expect(() => createSlug('')).toThrow('errore non puoi passare una stringa vuota')
+    expect(() => createSlug(undefined)).toThrow('errore non puoi passare una stringa vuota')
+    expect(() => createSlug(null)).toThrow('errore non puoi passare una stringa vuota')
 })
 // snack 7 
 
