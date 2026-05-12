@@ -8,9 +8,10 @@ test('La funzione getInitials restituisce le iniziali di un nome completo.', () 
     expect(getInitials('andrea langianese')).toBe('a - l')
 })
 // snack 2
+const createSlug = frase => frase.toLowerCase()
 
 test('La funzione createSlug restituisce una stringa in lowercase', () => {
-
+    expect(createSlug('CIAO BELLA')).toBe('ciao bella')
 })
 // snack 3 
 
