@@ -10,4 +10,9 @@ function average(numeri) {
     return numeri.reduce((acc, num) => acc + num, 0) / numeri.length
 }
 
-module.exports = { getInitials, createSlug, average };
+function isPalindrome(word) {
+    const inverseWord = word.split('').reverse().join('')
+    return inverseWord === word
+}
+
+module.exports = { getInitials, createSlug, average, isPalindrome };
