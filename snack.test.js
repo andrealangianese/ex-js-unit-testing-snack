@@ -3,44 +3,57 @@ const { getInitials, createSlug, average, isPalindrome, findPostById } = require
 const posts = [
     { id: 1, nome: 'andrea', slug: 'grandefilosofo' },
     { id: 2, nome: 'mario', slug: 'grandestorico' }
-]
-// snack 1 
+];
 
-test('La funzione getInitials restituisce le iniziali di un nome completo.', () => {
-    expect(getInitials('andrea langianese')).toBe('a - l')
-})
-// snack 2
 
-test('La funzione createSlug restituisce una stringa in lowercase', () => {
-    expect(createSlug('CIAO BELLA')).toBe('ciao-bella')
-})
-// snack 3 
+describe('Funzione getInitials', () => {
+    test('restituisce le iniziali di un nome completo in formato "x - y"', () => {
+        expect(getInitials('andrea langianese')).toBe('a - l');
+    });
+});
 
-test('La funzione average calcola la media aritmetica di un array di numeri.', () => {
-    expect(average([60, 40])).toBe(50)
-})
-// snack 4 
+describe('Funzione createSlug', () => {
+    test('restituisce una stringa in lowercase', () => {
+        expect(createSlug('CIAO BELLA')).toBe('ciao-bella');
+    });
 
-test('La funzione createSlug sostituisce gli spazi con -', () => {
-    expect(createSlug('ciao mi chiamo andrea')).toBe('ciao-mi-chiamo-andrea')
-})
-// snack 5 
+    test('sostituisce correttamente gli spazi con il trattino (-)', () => {
+        expect(createSlug('ciao mi chiamo andrea')).toBe('ciao-mi-chiamo-andrea');
+    });
 
-test('La funzione isPalindrome verifica se una stringa è un palindromo."', () => {
-    expect(isPalindrome('anna')).toBeTruthy()
-    expect(isPalindrome('andrea')).toBeFalsy()
-})
-// snack 6 
+    test('lancia un errore se il titolo è vuoto, undefined o null', () => {
+        const errorMsg = 'errore non puoi passare una stringa vuota';
+        expect(() => createSlug('')).toThrow(errorMsg);
+        expect(() => createSlug(undefined)).toThrow(errorMsg);
+        expect(() => createSlug(null)).toThrow(errorMsg);
+    });
+});
 
-test('La funzione createSlug lancia un errore se il titolo è vuoto o non valido.', () => {
-    expect(() => createSlug('')).toThrow('errore non puoi passare una stringa vuota')
-    expect(() => createSlug(undefined)).toThrow('errore non puoi passare una stringa vuota')
-    expect(() => createSlug(null)).toThrow('errore non puoi passare una stringa vuota')
-})
-// snack 7 
+describe('Funzione average', () => {
+    test('calcola la media aritmetica corretta di un array di numeri', () => {
+        expect(average([60, 40])).toBe(50);
+        expect(average([10, 20, 30])).toBe(20);
+    });
+});
 
-test('La funzione findPostById restituisce il post corretto dato l’array di post e l’id', () => {
-    expect(findPostById(posts, 1)).toEqual({ id: 1, nome: 'andrea', slug: 'grandefilosofo' })
-    expect(findPostById(posts, 3)).toBe(null)
-    expect(() => findPostById(posts, 'me')).toThrow('me non è un id')
-})
+describe('Funzione isPalindrome', () => {
+    test('verifica correttamente se una stringa è un palindromo', () => {
+        expect(isPalindrome('anna')).toBeTruthy();
+        expect(isPalindrome('andrea')).toBeFalsy();
+    });
+});
+
+describe('Funzione findPostById', () => {
+    test('restituisce il post corretto dato l’array di post e l’id', () => {
+        expect(findPostById(posts, 1)).toEqual({ id: 1, nome: 'andrea', slug: 'grandefilosofo' });
+    });
+
+    test('restituisce null se l’id non esiste nell’array', () => {
+        expect(findPostById(posts, 3)).toBe(null);
+    });
+
+    test('lancia un errore specifico se l’id passato non è un numero', () => {
+        // Nota: Assicurati che findPostById lanci esattamente questo messaggio
+        expect(() => findPostById(posts, 'me')).toThrow('me non è un id');
+    });
+});
