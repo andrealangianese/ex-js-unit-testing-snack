@@ -1,5 +1,9 @@
-const { getInitials, createSlug, average, isPalindrome } = require("./snack.js");
+const { getInitials, createSlug, average, isPalindrome, findPostById } = require("./snack.js");
 
+const posts = [
+    { id: 1, nome: 'andrea', slug: 'grandefilosofo' },
+    { id: 2, nome: 'mario', slug: 'grandestorico' }
+]
 // snack 1 
 
 test('La funzione getInitials restituisce le iniziali di un nome completo.', () => {
@@ -36,5 +40,7 @@ test('La funzione createSlug lancia un errore se il titolo è vuoto o non valido
 // snack 7 
 
 test('La funzione findPostById restituisce il post corretto dato l’array di post e l’id', () => {
-
+    expect(findPostById(posts, 1)).toEqual({ id: 1, nome: 'andrea', slug: 'grandefilosofo' })
+    expect(findPostById(posts, 3)).toBe(null)
+    expect(() => findPostById(posts, 'me')).toThrow('me non è un id')
 })
