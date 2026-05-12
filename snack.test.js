@@ -14,9 +14,12 @@ test('La funzione createSlug restituisce una stringa in lowercase', () => {
     expect(createSlug('CIAO BELLA')).toBe('ciao bella')
 })
 // snack 3 
+function average(numeri) {
+    return numeri.reduce((acc, num) => acc + num, 0) / numeri.length
+}
 
 test('La funzione average calcola la media aritmetica di un array di numeri.', () => {
-
+    expect(average([60, 40])).toBe(50)
 })
 // snack 4 
 
